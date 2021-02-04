@@ -1,0 +1,384 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# # Strings " "
+
+# In[1]:
+
+
+s = " word "
+print(s)
+print(type(s))
+
+
+# ## String Operations
+
+# #### Concatenation
+
+# In[2]:
+
+
+'apple' + 'bat'
+
+
+# In[3]:
+
+
+'4' + '5'
+
+
+# In[4]:
+
+
+a = input("Enter a word: ")
+b = input("Enter another word: ")
+c = a+b
+print("Concatenation of two words is : " ,c)
+
+
+# ### String Replication
+
+# In[4]:
+
+
+a = "ABC "
+print(a*3)
+
+
+# In[5]:
+
+
+b = "\n ABC"
+print(b*3)
+
+
+# ### String Indexing
+
+# In[7]:
+
+
+s = "My name is ABC"
+print(s[2])
+print(s[-6])  #indexing from reverse
+print(len(s)) #gives length of string
+
+
+# ### String Slicing
+# - Syntax:
+# 
+#       str_name[ start_index : stop_index : steps(direction) ]
+
+# In[11]:
+
+
+s='Welcome to DataFolkz'
+print(s[0 : 5 : 1])
+print(s[0 : 5])      #default step size is 1
+
+
+# In[12]:
+
+
+print(s[2 : 11])
+
+
+# In[13]:
+
+
+print(s[2 : 13 : 2])  #giving step size as 2
+
+
+# In[14]:
+
+
+print(s[-12 : -3 ]) #retrieving using negative indexing
+
+
+# In[15]:
+
+
+print(s[-13 : -1 : 2]) #using negative indexing with step size 2
+
+
+# In[25]:
+
+
+print(s[12 : 3 : 1]) #this will not give us output
+
+
+# In[26]:
+
+
+print(s[12 : 3 : -1]) #to slice in reverse order with positive indexing step size should be given negative
+
+
+# In[27]:
+
+
+print(s[-2 : -13 ]) #this will not give us output
+
+
+# In[29]:
+
+
+print(s[-2 : -13 : -1]) #to slice in reverse order with negative indexing step size should be given negative
+
+
+# In[28]:
+
+
+s[ : -9 ]
+
+
+# In[30]:
+
+
+s[-11 : : -1]
+
+
+# In[31]:
+
+
+# Reversing a string using slicing
+
+
+# In[33]:
+
+
+s[ : : -1]
+
+
+# In[34]:
+
+
+s[-1 : -15 : -1]
+
+
+# ### String Formatting
+
+# In[39]:
+
+
+name = "XYZ"
+age = 20
+
+
+# In[40]:
+
+
+# Hi, XYZ
+print("Hi, XYZ")
+print("Hi," , name)
+
+
+# In[41]:
+
+
+# I am 20 years old
+print('I am 20 years old')
+print("I am" , age , " years old ")
+
+
+# In[42]:
+
+
+# XYZ is 20 years old
+print(name, "is" ,age ,"years old")
+
+
+# ### Old Style Formatting
+# - The % operator takes only one argument, we need to wrap the right-hand side in some data structure when there are more than one data elements
+
+# In[45]:
+
+
+# Hi, XYZ
+print("Hi, XYZ")
+print("Hi,%s" %name)    # %s means it will be replaced by a string
+
+
+# In[47]:
+
+
+# I am 20 years old
+print("I am 20 years old")
+print('I am %d years old' %age)   #%d means it will be replaced by digit
+
+
+# In[48]:
+
+
+# XYZ is 20 years old
+print("XYZ is 20 years old")
+print("%s is %d years old" %(name,age))
+
+
+# In[49]:
+
+
+#position independent
+name = 'AABC'
+age = 12
+print('Hey %(n)s, I am  %(a)d years old. I have %(a)d mangoes.' % { "a": age , "n" : name })
+
+
+# In[51]:
+
+
+print('Hey',name , "I am", age,  'years old.') #this one is preferred
+
+
+# In[52]:
+
+
+print('Hey '+ name + " I am " + str(age)  +' years old.')
+
+
+# ### New Style formatting
+
+# str.format() - # New Style string formatting
+# - code independent
+# - position independent
+
+# In[55]:
+
+
+#old style
+print("Hey %s. I'm %d years old" %(name,age))
+#new style
+print("Hey {}, I'm {} years old." .format(name , age))
+
+
+# In[60]:
+
+
+#same thing writting in three different ways
+print("Hey {n}, I'm {a} years old." .format(a = age , n = name))
+print("Hey {n}, I'm {a} years old." .format(a = 12 , n = "IJK"))
+print("Hey {}, I'm {} years old." .format("IJK" , 12))
+
+
+# ### f- string formatting
+
+# In[61]:
+
+
+#in this we do not have to use .format , we can just write f in the beginning of the line and variable name is place holders
+print(f"Hey, {name}, I'm {age} years old.")
+
+
+# In[62]:
+
+
+a = 2
+b = 10
+print(f' a + b gives {a + b} and a*b gives {a*b}')
+
+
+# # Build in string functions
+
+# In[63]:
+
+
+str1='We are learning Python'
+print(str1.upper())  #converts whole sentence into uppercase
+print(str1.lower())  #converts whole sentence into lowercase
+print(str1.title())  #converts first letter of every word into uppercase
+print(str1.capitalize())  #converts first letter into uppercase
+print(str1.swapcase())    #converts uppercase into lower and lowercase into upper
+
+
+# In[74]:
+
+
+str2='DATA FOLKZ'
+print(str2.islower()) #checks if the string is lower or not
+print(str2.isupper()) #checks if the string is upper or not
+print(str2.isnumeric()) #checks if the string is numeric or not
+print(str2.isspace())  #checks if the string is space
+
+
+# In[64]:
+
+
+print(str1.count('e'))  #print the no. of times e occurs in str1
+
+
+# In[65]:
+
+
+str2='   COMMAND  '
+print(str2.strip())  #strips/deletes spaces from the both the sides
+print(str2.lstrip()) #strips/deletes spaces from the left side
+print(str2.rstrip()) #strips/deletes spaces from right side
+
+
+# In[66]:
+
+
+date='12-01-2020'
+#splits on the basis of delimiter '-'
+print(date.split("-"))
+print(date.rsplit("-",1))
+print(date.split("-",1))
+
+
+# In[67]:
+
+
+name='Dr. Priya Jain'
+print(name.split())  #splited on delimiter 'space'
+name1='Dr.', 'Priya', 'Jain'
+print(" ".join(name1))
+
+
+# In[68]:
+
+
+str3='I was happy'
+print(str3.replace('was','am'))
+
+
+# In[79]:
+
+
+print(str3.find('w'))    #gives the index of the letter
+print(str3.find('happy')) #when provided a word, it gives he index of first letter of thre word
+
+
+# In[85]:
+
+
+#this fuction tells us if the word ends with a given letter or not
+print(str3.endswith('w')) 
+print(str3.endswith('y'))
+
+
+# In[69]:
+
+
+#gives length of string
+str1
+print(len(str1))
+
+
+# ### sorted()
+
+# In[87]:
+
+
+s='Data'
+print(sorted(s))
+print(type(sorted(s)))
+
+
+# - sorted() will treat a str like a list and iterate through each element. In a str, each element means each character in the str.
+# - sorted() will not treat a sentence differently, and it will sort each character, including spaces.
+
+# We have discussed all the most used functions . There are some other builtin functions as well . You can see them by pressing Tab after dot(.) like str1. then press tab
+
+# In[ ]:
+
+
+
+

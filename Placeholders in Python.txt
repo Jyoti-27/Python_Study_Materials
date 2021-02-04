@@ -1,0 +1,44 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# ### Placeholders in Python
+# 
+# What is a Placeholder?
+# 
+# - Intuitively, a placeholder is a pre-formatted container into which content can be placed.
+# - If you have a variable in Python or any other type of data type, you can create a placeholder, usually in a print function to reserve a spot for this variable before explicitly saying what the variable is.
+# 
+
+# In[3]:
+
+
+MovieName = "Baahubali"
+Ntimes = 4
+place = "Theatre"
+print("I have watched {} movie {} times in {}".format(MovieName,Ntimes,place))
+
+
+# In[1]:
+
+
+name = "Aravind"
+age = 36
+print("My name is {} and my age is {}".format(name,age))
+
+
+# ####  Formatting Strings
+
+# In[12]:
+
+
+name = "Aravind"
+age = 36
+print("My name is %s and my age is %d" % (name,age))
+
+
+# In[ ]:
+
+
+
+
+

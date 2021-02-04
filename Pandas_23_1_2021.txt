@@ -1,0 +1,291 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
+
+import pandas as pd
+
+
+# ### Series Concatenation
+
+# In[5]:
+
+
+ser1=pd.Series(['A', 'B', 'C'], index=[1,2,3])
+ser1
+
+
+# In[7]:
+
+
+ser2=pd.Series(['D', 'E', 'F'], index=[4,5,6])
+ser2
+
+
+# In[8]:
+
+
+#concat () function  for concatenating the  series
+#stack the  series one below the other
+print("Concatenated series is \n", pd.concat([ser1, ser2]))
+
+
+# In[11]:
+
+
+ser3=pd.Series(['F', 'G', 'H'], index=[9,10,11])
+ser3
+
+
+# In[12]:
+
+
+list=[ser1,ser2,ser3]
+print(pd.concat(list))
+
+
+# ###  DatafRame Concatenation
+
+# In[15]:
+
+
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'],  'C': ['cap', 'cat', 'car']})
+df1
+
+
+# In[25]:
+
+
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'E':['ear', 'eat', 'egg'],  'F': ['fan', 'fat', 'fog']})
+df2
+
+
+# ###  Concatention can be rowwise one DF below another axis =0
+# ###  columns stacked alongside axis=1
+
+# In[23]:
+
+
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=0))
+#for overlapping columns  the values are also stacked one  below 
+#concatentaion with axis=0 considers the overlap of columns
+
+
+# In[27]:
+
+
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=0,  ignore_index=True))
+
+
+# In[26]:
+
+
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=1))
+
+
+# In[32]:
+
+
+#case for common columns
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'],  'C': ['cap', 'cat', 'car']})
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'B':['ear', 'eat', 'egg'],  'C': ['fan', 'fat', 'fog']})
+print(df1)
+print(df2)
+#print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=0, ignore_index=True))
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=1))
+#with repeated columns   it will just append the columns
+#it will consider common rows
+
+
+# ### Axis=0
+# * Concatenation just appends on dataframe below another
+# * considers the intersection of columns stcaks values for them one below another
+# * rowise indices if there is repition it reains the repitions
+
+# ### Axis=1
+# * Concatenation just appends one dataframe alonside the other columns are put together
+# * considers the intersection of rows stcaks values for them one on the side of other
+# * column  indices(column names) if there is repition it retains the repetitions
+
+# In[37]:
+
+
+#case for no common  rows
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'], 
+                  'C': ['cap', 'cat', 'car']}, index=[1,2,3])
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'E':['ear', 'eat', 'egg'], 
+                  'F': ['fan', 'fat', 'fog']}, index =[1,2,3])
+print(df1)
+print(df2)
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=1))
+
+
+# * eg: of two file having common empids and different columns 
+# *  one file has name and address
+# * another file has dept salary
+
+# In[38]:
+
+
+#case for common row indices columns
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'], 
+                  'C': ['cap', 'cat', 'car']}, index=[1,2,3])
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'E':['ear', 'eat', 'egg'], 
+                  'F': ['fan', 'fat', 'fog']}, index =[2,3,4])
+print(df1)
+print(df2)
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=1))
+
+
+# In[40]:
+
+
+
+print(df2)
+print("Concatenated dataframes axis=0\n#case forno  common row indices columns
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'], 
+                  'C': ['cap', 'cat', 'car']}, index=[1,2,3])
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'E':['ear', 'eat', 'egg'], 
+                  'F': ['fan', 'fat', 'fog']}, index =[4,5,6])
+print(df1)", pd.concat([df1,df2], axis=0))
+
+
+# In[41]:
+
+
+#case forno  common row indices columns
+df1=pd.DataFrame({'A':['axe', 'art', 'ant'], 'B':['bat', 'bar', 'bin'], 
+                  'C': ['cap', 'cat', 'car']}, index=[1,2,3])
+df2=pd.DataFrame({'D':['dog', 'den', 'dot'], 'E':['ear', 'eat', 'egg'], 
+                  'F': ['fan', 'fat', 'fog']}, index =[4,5,6])
+#conacatenation on axis =0 stacks the rows repition of row is retained, 
+#stack the overllaping column values
+#concatenation axis=1 stacks the columns repition of column is reatined,
+#stack the overlapping row value
+print(df1)
+print(df2)
+print("Concatenated dataframes axis=0\n", pd.concat([df1,df2], axis=1))
+
+
+# ### Merge  is based on a common column
+# 
+
+# In[44]:
+
+
+df_stud = pd.DataFrame({'St_id': [101,102,103,104,105],'Branch': ['IT','CS','ECE','CS','Mech']})
+df_stud
+
+
+# In[51]:
+
+
+df_fac = pd.DataFrame({'F_id' : [110,120,130,140,150 ],'F_name' : ['A', 'B', 'C', 'D', 'E'],'Branch': ['ECE','Mech', 'EEE', "IT", 'CS'] })
+#print("Student dataframe: \n", df_stud,'\nFaculty Dataframe :\n', df_fac)
+df_fac
+#print(pd.concat([df_stud, df_fac], axis=1))
+print(pd.merge(df_stud, df_fac,on='Branch', sort=True))
+
+
+# In[52]:
+
+
+df1 = pd. DataFrame({'key' :['b', 'a', 'd','e'], 'data1': [0,4,6,8]}) #has unique
+df2 =pd. DataFrame({'key' :['a', 'b', 'd', 'f'], 'data2': [3,6,9,11]})   # has unique row labels
+print("DataFrame1 : \n", df1, '\nDataFrame2 :\n', df2)
+
+
+# In[53]:
+
+
+print("Outer Join:\n", pd.merge(df1, df2, on ='key', how = 'outer', sort=True))   # union of keys
+
+
+# In[57]:
+
+
+print("Inner Join:\n", pd.merge(df1, df2, on ='key', how = 'inner', sort=True))
+# intersectionof keys
+
+
+# In[55]:
+
+
+df1 = pd. DataFrame({'key' :['b', 'a', 'd','e'], 'data1': [0,4,6,8]}) #has unique
+df2 =pd. DataFrame({'key' :['a', 'b', 'd', 'f'], 'data2': [3,6,9,11]})   # has unique row labels
+print("DataFrame1 : \n", df1, '\nDataFrame2 :\n', df2)
+
+
+# In[56]:
+
+
+print("Left Join:\n", pd.merge(df1, df2, on ='key', how = 'left', sort=True))
+# keys from left dataframe
+
+
+# In[58]:
+
+
+print("Right Join:\n", pd.merge(df1, df2, on ='key', how = 'right', sort=True))
+# keys from Right dataframe
+
+
+# ### Summary of the above 
+# #### One One join with four cases outer, inner, left and right
+
+# In[60]:
+
+
+#many one merge
+df1=pd.DataFrame({'key':['b', 'b', 'a', 'c', 'a','a'], 'data1':[10,20,30,40,50,60]})
+df2=pd.DataFrame({'key':['a', 'b', 'd'], 'data2':[100, 200, 300]})
+print("\n", df1)
+print("\n", df2)
+#print("Outer Join:\n", pd.merge(df1, df2, on ='key', how = 'outer', sort=True))   
+# union of keys 
+#print("Inner Join:\n", pd.merge(df1, df2, on ='key', how = 'inner', sort=True))    
+# intersection of keys 
+#print("Left Join:\n", pd.merge(df1, df2, on ='key', how = 'left', sort=True))  
+#  keys from left dataframe
+print("Right Join:\n", pd.merge(df1, df2, on ='key', how = 'right', sort=True))   
+#  keys from right  dataframe
+
+
+# In[63]:
+
+
+# Many many merge
+df1 =pd. DataFrame({'key' : ['b', 'b', 'a','c', 'a', 'a'], 'data1': [10,20,30,40,50,60]})  
+#has multiple rows labelled a and b
+df2 = pd.DataFrame({'key' : ['a', 'b', 'b', 'a', 'd'], 'data2': [100,200,300,400,500]})
+print("DataFrame1 : \n", df1, '\nDataFrame2 :\n', df2)
+
+#Example of many to many  merge situation
+#No of rows in the dataframe = 6x5 for outer
+
+print("Outer Join:\n", pd.merge(df1, df2, on ='key', how = 'outer', sort=True))   
+# Union of keys 
+
+#print("Inner Join:\n", pd.merge(df1, df2, on ='key', how = 'inner', sort=True))   
+# Intersection of keys
+
+#print("Left Join:\n", pd.merge(df1, df2, on ='key', how = 'left', sort=True))    
+#  keys from left dataframe
+
+#print("Right Join:\n", pd.merge(df1, df2, on ='key', how = 'right', sort=True))     # 
+#Here left and outer is same and Right and Inner is same
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
